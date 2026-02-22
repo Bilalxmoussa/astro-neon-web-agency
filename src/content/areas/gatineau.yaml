@@ -23,7 +23,7 @@ neighborhoods:
 sections:
   - heading: "Why Gatineau Businesses Need Professional Web Design"
     content:
-      - "Gatineau occupies a unique and powerful position in the National Capital Region. As Quebec's fourth-largest city with a population of over 290,000, Gatineau is a major economic centre in its own right — but its proximity to Ottawa creates opportunities that no other Quebec city can match. Gatineau businesses have natural access to the entire National Capital Region market of over 1.4 million people, spanning two provinces and both official languages. However, capturing this cross-border market requires a web presence that is genuinely bilingual, culturally attuned, and optimized for search engines in both English and French."
+      - "Gatineau occupies a unique and powerful position in the National Capital Region. As Quebec's fourth-largest city with a population of over 290,000, Gatineau is a major economic centre in its own right — but its proximity to Ottawa creates opportunities that no other Quebec city can match. Gatineau businesses have natural access to the entire National Capital Region market of over 1.4 million people, spanning two provinces and both official languages — from <a href=\"/areas/centretown/\">Centretown Ottawa</a> just across the river to communities as far as <a href=\"/areas/rockland/\">Rockland</a> in the east. However, capturing this cross-border market requires a web presence that is genuinely bilingual, culturally attuned, and optimized for search engines in both English and French."
       - "The digital landscape in Gatineau presents distinct challenges compared to Ottawa. Many Gatineau businesses still have French-only websites, which means they are invisible to the hundreds of thousands of English-speaking potential customers across the river. Conversely, Ottawa businesses with English-only sites miss the Gatineau market entirely. The businesses that thrive are those with truly bilingual websites that rank well in both French and English search results. Professional <a href=\"/services/web-design/\">web design</a> services from an agency that understands bilingual markets can unlock this massive cross-border opportunity."
       - "At Neon Web Agency, we specialize in building bilingual websites for Gatineau businesses that need to compete in both French and English markets. We understand the cultural and linguistic nuances that make Quebec French different from standard French, and we know how to build websites that resonate with both Gatineau's francophone majority and the broader anglophone Ottawa market. Our approach combines cutting-edge design with bilingual <a href=\"/services/seo/\">SEO services</a> that ensure your business is visible to customers across the entire National Capital Region."
   - heading: "Bilingual Web Design for the National Capital Region"
@@ -78,6 +78,8 @@ relatedLocations:
   - "orleans"
   - "kanata"
   - "nepean"
+  - "centretown"
+  - "rockland"
 relatedBlogSlugs:
   - "web-design-cost-ottawa"
   - "local-seo-guide-ottawa"
@@ -87,3 +89,5 @@ relatedIndustrySlugs:
   - "restaurants"
   - "lawyers"
   - "real-estate"
+  - "nonprofits"
+  - "salons-spas"

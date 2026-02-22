@@ -23,7 +23,7 @@ neighborhoods:
 sections:
   - heading: "Why Nepean Businesses Need Professional Web Design"
     content:
-      - "Nepean is home to one of Ottawa's most established and diverse business communities. Stretching from the Merivale Road commercial corridor through Bells Corners and out to Barrhaven's borders, Nepean encompasses hundreds of retail shops, restaurants, professional service firms, automotive businesses, and industrial operations. This rich business ecosystem has been serving Ottawa residents for decades, but the way customers find and choose local businesses has fundamentally changed. Today, your website is your storefront — and if it is not modern, fast, and easy to use, you are losing customers to competitors who have invested in their digital presence."
+      - "Nepean is home to one of Ottawa's most established and diverse business communities. Stretching from the Merivale Road commercial corridor through Bells Corners and out toward <a href=\"/areas/stittsville/\">Stittsville</a> and Barrhaven's borders, and bordered by the vibrant <a href=\"/areas/westboro/\">Westboro</a> neighbourhood to the north, Nepean encompasses hundreds of retail shops, restaurants, professional service firms, automotive businesses, and industrial operations. This rich business ecosystem has been serving Ottawa residents for decades, but the way customers find and choose local businesses has fundamentally changed. Today, your website is your storefront — and if it is not modern, fast, and easy to use, you are losing customers to competitors who have invested in their digital presence."
       - "The Merivale Road corridor alone is home to hundreds of businesses spanning every category imaginable. Automotive dealerships, furniture stores, restaurants, fitness centres, medical clinics, and specialty retailers all compete for the attention of customers who increasingly start their shopping journey with a Google search. Whether someone is looking for 'auto repair Nepean,' 'furniture stores Merivale Road,' or 'best Italian restaurant Bells Corners,' your website is the first impression that determines whether they choose you or a competitor. Professional <a href=\"/services/web-design/\">web design</a> services ensure that first impression is a powerful one."
       - "At Neon Web Agency, we understand the Nepean market inside and out. We know that Bells Corners businesses serve a different demographic than those on Merivale Road, and that businesses near Algonquin College have unique opportunities to reach students and faculty. Our web design approach is tailored to each Nepean business's specific location, audience, and competitive landscape, ensuring your website does not just look great — it drives real business results through strategic design, compelling content, and powerful <a href=\"/services/seo/\">SEO optimization</a>."
   - heading: "Web Design for Nepean's Diverse Business Landscape"
@@ -78,6 +78,8 @@ relatedLocations:
   - "barrhaven"
   - "kanata"
   - "gloucester"
+  - "westboro"
+  - "stittsville"
 relatedBlogSlugs:
   - "web-design-cost-ottawa"
   - "local-seo-guide-ottawa"
@@ -87,3 +89,5 @@ relatedIndustrySlugs:
   - "real-estate"
   - "ecommerce"
   - "contractors"
+  - "accountants"
+  - "salons-spas"

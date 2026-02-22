@@ -57,5 +57,39 @@ const industries = await getCollection('industries');
     </div>
   </section>
 
+  <section class="py-16 bg-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-dark mb-6">Explore Our Services & Areas</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div>
+          <h3 class="font-semibold text-dark mb-3">Our Services</h3>
+          <ul class="space-y-2">
+            {siteConfig.services.map((s) => (
+              <li><a href={`/services/${s.slug}/`} class="text-sm text-primary hover:underline">{s.title}</a></li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-semibold text-dark mb-3">Areas We Serve</h3>
+          <ul class="space-y-2">
+            {siteConfig.navigation.main.find(n => n.label === 'Areas')?.children?.map((area) => (
+              <li><a href={area.href} class="text-sm text-primary hover:underline">Web Design {area.label}</a></li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-semibold text-dark mb-3">Resources</h3>
+          <ul class="space-y-2">
+            <li><a href="/blog/web-design-cost-ottawa/" class="text-sm text-primary hover:underline">How Much Does Web Design Cost?</a></li>
+            <li><a href="/blog/how-to-choose-web-designer-ottawa/" class="text-sm text-primary hover:underline">How to Choose a Web Designer</a></li>
+            <li><a href="/blog/local-seo-guide-ottawa/" class="text-sm text-primary hover:underline">Local SEO Guide for Ottawa</a></li>
+            <li><a href="/blog/small-business-seo-tips/" class="text-sm text-primary hover:underline">Small Business SEO Tips</a></li>
+            <li><a href="/blog/" class="text-sm text-primary hover:underline">View All Blog Posts →</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <CTA />
 </PageLayout>

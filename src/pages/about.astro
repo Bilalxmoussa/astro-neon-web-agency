@@ -26,16 +26,12 @@ import { siteConfig } from '../config/site';
           <p>
             Neon Web Agency was founded in {siteConfig.foundingYear} by {siteConfig.author.name} with a simple mission: help Ottawa small businesses compete online with professional, high-performance websites that actually drive results. What started as a one-person operation has grown into a full-service web design agency serving businesses across the National Capital Region.
           </p>
-          <p class="mt-4">
-            Over the years, we've launched more than 150 websites for businesses in Ottawa, Kanata, Barrhaven, Orleans, Nepean, Gloucester, and Gatineau. Our clients span every industry — from dental clinics and law firms to restaurants, contractors, and tech companies. We take pride in our 98% client satisfaction rate and our 4.9-star Google rating.
-          </p>
+          <p class="mt-4" set:html={`Over the years, we've launched more than 150 websites for businesses in <a href="/areas/ottawa/">Ottawa</a>, <a href="/areas/kanata/">Kanata</a>, <a href="/areas/barrhaven/">Barrhaven</a>, <a href="/areas/orleans/">Orleans</a>, <a href="/areas/nepean/">Nepean</a>, <a href="/areas/gloucester/">Gloucester</a>, and <a href="/areas/gatineau/">Gatineau</a>. Our clients span every industry — from <a href="/industries/dental/">dental clinics</a> and <a href="/industries/lawyers/">law firms</a> to <a href="/industries/restaurants/">restaurants</a>, <a href="/industries/contractors/">contractors</a>, and tech companies. We take pride in our 98% client satisfaction rate and our 4.9-star Google rating.`} />
         </div>
 
         <div>
           <h2 class="text-2xl font-bold text-dark mb-4">Our Approach</h2>
-          <p>
-            We believe every business deserves a website that works as hard as they do. That means no templates, no cookie-cutter solutions, and no compromises on quality. Every website we build is custom-designed, mobile-responsive, SEO-optimized, and engineered to convert visitors into customers.
-          </p>
+          <p set:html={`We believe every business deserves a website that works as hard as they do. That means no templates, no cookie-cutter solutions, and no compromises on quality. Every website we build is <a href="/services/web-design/">custom-designed</a>, <a href="/services/responsive-development/">mobile-responsive</a>, <a href="/services/seo/">SEO-optimized</a>, and engineered to convert visitors into customers.`} />
           <p class="mt-4">
             We combine stunning design with data-driven strategy. Every design decision is backed by research into your market, your competitors, and your target audience. The result is a website that not only looks exceptional but delivers measurable business results.
           </p>
@@ -55,11 +51,11 @@ import { siteConfig } from '../config/site';
           <div class="grid sm:grid-cols-2 gap-6">
             <div class="p-4 bg-light rounded-lg">
               <h3 class="font-semibold text-dark">Local Expertise</h3>
-              <p class="mt-1 text-sm">Deep understanding of the Ottawa market, its demographics, and competitive landscape.</p>
+              <p class="mt-1 text-sm" set:html={`Deep understanding of the <a href="/areas/ottawa/">Ottawa</a> market — from <a href="/areas/kanata/">Kanata</a> to <a href="/areas/orleans/">Orleans</a> — its demographics, and competitive landscape.`} />
             </div>
             <div class="p-4 bg-light rounded-lg">
               <h3 class="font-semibold text-dark">Results-Driven</h3>
-              <p class="mt-1 text-sm">Every website is designed to generate leads, sales, and measurable business growth.</p>
+              <p class="mt-1 text-sm" set:html={`Every website is <a href="/services/web-design/">designed</a> to generate leads, sales, and measurable business growth through <a href="/services/seo/">proven SEO strategies</a>.`} />
             </div>
             <div class="p-4 bg-light rounded-lg">
               <h3 class="font-semibold text-dark">Transparent Pricing</h3>

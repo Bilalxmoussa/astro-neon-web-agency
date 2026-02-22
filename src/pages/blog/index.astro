@@ -5,6 +5,7 @@ import CTA from '../../components/CTA.astro';
 import BreadcrumbSchema from '../../components/schema/BreadcrumbSchema.astro';
 import WebPageSchema from '../../components/schema/WebPageSchema.astro';
 import { getCollection } from 'astro:content';
+import { siteConfig } from '../../config/site';
 
 const posts = (await getCollection('blog')).sort(
   (a, b) => new Date(b.data.datePublished).getTime() - new Date(a.data.datePublished).getTime()
@@ -53,6 +54,38 @@ const posts = (await getCollection('blog')).sort(
             </div>
           </a>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-dark mb-6">Explore Our Services, Areas & Industries</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div>
+          <h3 class="font-semibold text-dark mb-3">Our Services</h3>
+          <ul class="space-y-2">
+            {siteConfig.services.map((s) => (
+              <li><a href={`/services/${s.slug}/`} class="text-sm text-primary hover:underline">{s.title}</a></li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-semibold text-dark mb-3">Areas We Serve</h3>
+          <ul class="space-y-2">
+            {siteConfig.navigation.main.find(n => n.label === 'Areas')?.children?.map((area) => (
+              <li><a href={area.href} class="text-sm text-primary hover:underline">Web Design {area.label}</a></li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-semibold text-dark mb-3">Industries We Serve</h3>
+          <ul class="space-y-2">
+            {siteConfig.navigation.main.find(n => n.label === 'Industries')?.children?.map((ind) => (
+              <li><a href={ind.href} class="text-sm text-primary hover:underline">{ind.label} Web Design</a></li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   </section>

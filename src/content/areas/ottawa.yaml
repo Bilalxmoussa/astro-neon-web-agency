@@ -23,7 +23,7 @@ neighborhoods:
 sections:
   - heading: "Why Ottawa Businesses Need Professional Web Design"
     content:
-      - "Ottawa is Canada's capital city with over one million residents and a thriving business ecosystem. From government contractors on Parliament Hill to tech startups in Centretown, businesses across the city need professional websites."
+      - "Ottawa is Canada's capital city with over one million residents and a thriving business ecosystem. From government contractors on Parliament Hill to tech startups in <a href=\"/areas/centretown/\">Centretown</a>, and boutique shops in <a href=\"/areas/westboro/\">Westboro</a> and <a href=\"/areas/glebe/\">the Glebe</a>, businesses across the city need professional websites."
       - "At Neon Web Agency, we specialize in building high-performance websites for Ottawa businesses combining stunning design with robust SEO optimization."
   - heading: "Local SEO for Ottawa Businesses"
     content:
@@ -66,6 +66,9 @@ relatedLocations:
   - "kanata"
   - "barrhaven"
   - "orleans"
+  - "centretown"
+  - "westboro"
+  - "glebe"
 relatedBlogSlugs:
   - "web-design-cost-ottawa"
   - "local-seo-guide-ottawa"
@@ -73,3 +76,5 @@ relatedIndustrySlugs:
   - "restaurants"
   - "dental"
   - "lawyers"
+  - "medical-clinics"
+  - "salons-spas"

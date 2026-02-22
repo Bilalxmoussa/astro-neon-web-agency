@@ -35,7 +35,7 @@ sections:
     content:
       - "Local SEO is the engine that drives customers to your Orleans business. When residents search for 'plumber Orleans,' 'best sushi Orleans Ottawa,' or 'family dentist east Ottawa,' Google shows results based on relevance, proximity, and authority. Our job is to ensure your business appears at the top of these results. We achieve this through a comprehensive <a href=\"/blog/local-seo-guide-ottawa/\">local SEO strategy</a> that includes on-page optimization, Google Business Profile management, local citation building, and bilingual keyword targeting."
       - "Bilingual SEO is especially important for Orleans businesses. We research and target keywords in both English and French, ensuring your website captures traffic from searches in either language. This includes creating properly optimized bilingual content, implementing hreflang tags to signal to Google which language each page serves, and building French-language citations and backlinks. Many Orleans competitors only optimize for English searches, which means a bilingual SEO strategy can give you access to a significant volume of untapped search traffic."
-      - "We also focus on neighbourhood-level targeting within Orleans. Whether your primary customers come from Fallingbrook, Avalon, Chapel Hill, or Convent Glen, we create content and optimize your site for these specific micro-markets. This granular approach to local SEO helps your business appear in searches from the customers closest to you, who are most likely to visit in person. Combined with review management and regular Google Business Profile updates, our local SEO services help Orleans businesses build an unassailable online presence that competitors in <a href=\"/areas/gloucester/\">Gloucester</a> and <a href=\"/areas/kanata/\">Kanata</a> will struggle to match."
+      - "We also focus on neighbourhood-level targeting within Orleans. Whether your primary customers come from Fallingbrook, Avalon, Chapel Hill, or Convent Glen — or from growing east-end communities like <a href=\"/areas/rockland/\">Rockland</a> and <a href=\"/areas/embrun/\">Embrun</a> — we create content and optimize your site for these specific micro-markets. This granular approach to local SEO helps your business appear in searches from the customers closest to you, who are most likely to visit in person. Combined with review management and regular Google Business Profile updates, our local SEO services help Orleans businesses build an unassailable online presence that competitors in <a href=\"/areas/gloucester/\">Gloucester</a> and <a href=\"/areas/kanata/\">Kanata</a> will struggle to match."
   - heading: "Our Web Design Process for Orleans Clients"
     content:
       - "We approach every Orleans project with a structured process that eliminates guesswork and delivers predictable, high-quality results. The journey begins with a discovery consultation where we learn about your business, your customers, your competition, and your goals. For Orleans businesses, we pay special attention to language requirements, neighbourhood-specific targeting needs, and the competitive dynamics of the east Ottawa market."
@@ -78,6 +78,8 @@ relatedLocations:
   - "gloucester"
   - "kanata"
   - "gatineau"
+  - "rockland"
+  - "embrun"
 relatedBlogSlugs:
   - "local-seo-guide-ottawa"
   - "wordpress-vs-custom-website"
@@ -87,3 +89,5 @@ relatedIndustrySlugs:
   - "lawyers"
   - "dental"
   - "restaurants"
+  - "medical-clinics"
+  - "nonprofits"

@@ -25,7 +25,7 @@ sections:
     content:
       - "Kanata has evolved from a quiet suburban community into one of Ottawa's most dynamic business hubs, anchored by the Kanata North Technology Park — Canada's largest technology park with over 540 companies and 33,000 employees. Whether you run a tech startup in Kanata North, a retail shop on Hazeldean Road, or a professional service firm in Kanata Centrum, your website is the foundation of your digital presence. In a community where technology drives the economy, having an outdated or poorly designed website sends the wrong message to potential customers and partners."
       - "Today's Kanata consumers expect fast, mobile-friendly websites that provide instant access to the information they need. Research shows that 75% of users judge a company's credibility based on its website design, and 53% of mobile visitors will leave a page that takes longer than three seconds to load. For Kanata businesses competing in both local and global markets, these numbers translate directly into lost revenue. A professional <a href=\"/services/web-design/\">web design</a> agency understands these stakes and builds websites that convert visitors into paying customers."
-      - "At Neon Web Agency, we have extensive experience working with Kanata businesses across every sector. We understand the unique dynamics of the Kanata market — from the tech-savvy professionals who work in Kanata North to the growing families settling in Bridlewood, Morgan's Grant, and Kanata Lakes. Our web design process is tailored to help Kanata businesses stand out in an increasingly competitive landscape, combining stunning visual design with robust technical performance and <a href=\"/services/seo/\">SEO services</a> that drive measurable results."
+      - "At Neon Web Agency, we have extensive experience working with Kanata businesses across every sector. We understand the unique dynamics of the Kanata market — from the tech-savvy professionals who work in Kanata North to the growing families settling in Bridlewood, Morgan's Grant, Kanata Lakes, and the neighbouring communities of <a href=\"/areas/stittsville/\">Stittsville</a> and <a href=\"/areas/carp/\">Carp</a>. Our web design process is tailored to help Kanata businesses stand out in an increasingly competitive landscape, combining stunning visual design with robust technical performance and <a href=\"/services/seo/\">SEO services</a> that drive measurable results."
   - heading: "Web Design for Kanata's Tech Sector and Local Businesses"
     content:
       - "Kanata's economy is uniquely diverse. The technology park is home to global players like Shopify, Nokia, Solace, Mitel, and hundreds of smaller tech companies, while the surrounding neighbourhoods support a thriving ecosystem of restaurants, dental practices, law firms, fitness studios, and retail shops. Each of these business types requires a different approach to web design. A SaaS company in Kanata North needs a sleek product-focused site with demo booking and documentation, while a <a href=\"/industries/restaurants/\">restaurant on Hazeldean Road</a> needs online ordering, menu displays, and reservation functionality."
@@ -78,6 +78,8 @@ relatedLocations:
   - "barrhaven"
   - "nepean"
   - "orleans"
+  - "stittsville"
+  - "carp"
 relatedBlogSlugs:
   - "web-design-cost-ottawa"
   - "local-seo-guide-ottawa"
@@ -87,3 +89,5 @@ relatedIndustrySlugs:
   - "restaurants"
   - "dental"
   - "contractors"
+  - "gyms-fitness"
+  - "medical-clinics"

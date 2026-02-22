@@ -53,7 +53,7 @@ import { siteConfig } from '../config/site';
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-3xl sm:text-4xl font-bold text-dark mb-8">{siteConfig.intro.heading}</h2>
       {siteConfig.intro.paragraphs.map((p) => (
-        <p class="text-gray leading-relaxed mb-4">{p}</p>
+        <p class="text-gray leading-relaxed mb-4" set:html={p} />
       ))}
     </div>
   </section>

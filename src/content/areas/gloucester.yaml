@@ -35,7 +35,7 @@ sections:
     content:
       - "Effective local SEO for Gloucester businesses requires understanding the community's unique search patterns. Gloucester residents search for services using a variety of location terms — 'Gloucester Ottawa,' 'Blair Road,' 'Ogilvie area,' 'Beacon Hill,' and even specific neighbourhood names like 'Cyrville' or 'Canterbury.' Our <a href=\"/blog/local-seo-guide-ottawa/\">local SEO strategy</a> targets all of these variations, ensuring your business appears in search results regardless of how potential customers describe your area."
       - "We implement a comprehensive local SEO framework for every Gloucester client that includes Google Business Profile optimization with accurate categories, business hours, service descriptions, and regular photo updates. We build consistent business citations across dozens of local and national directories. We implement LocalBusiness and Service schema markup on your website to help Google understand exactly what you offer and where you are located. And we create Gloucester-specific content that signals to search engines that your business is deeply rooted in the community."
-      - "The LRT expansion through Gloucester — with stations at Blair, Cyrville, and beyond — is changing the commercial landscape and creating new search patterns. Businesses near LRT stations are seeing increased foot traffic and new types of customers. We help Gloucester businesses capitalize on this shift by optimizing for transit-related searches and creating content that highlights your proximity to public transit. Businesses in <a href=\"/areas/orleans/\">Orleans</a> and <a href=\"/areas/nepean/\">Nepean</a> are adapting their digital strategies to similar transit developments, and Gloucester businesses should do the same to stay competitive."
+      - "The LRT expansion through Gloucester — with stations at Blair, Cyrville, and beyond — is changing the commercial landscape and creating new search patterns. Businesses near LRT stations are seeing increased foot traffic and new types of customers. We help Gloucester businesses capitalize on this shift by optimizing for transit-related searches and creating content that highlights your proximity to public transit. Businesses in <a href=\"/areas/orleans/\">Orleans</a>, <a href=\"/areas/nepean/\">Nepean</a>, and the growing communities of <a href=\"/areas/rockland/\">Rockland</a> and <a href=\"/areas/embrun/\">Embrun</a> are adapting their digital strategies to similar developments, and Gloucester businesses should do the same to stay competitive."
   - heading: "Our Web Design Process for Gloucester Clients"
     content:
       - "Our process is designed to be straightforward, collaborative, and results-focused. We begin with a detailed discovery session where we learn about your Gloucester business — your services, your ideal customers, your competitive landscape, and your growth goals. We research your local competitors' websites to identify opportunities where your new site can outperform them in both design and search rankings."
@@ -78,6 +78,8 @@ relatedLocations:
   - "orleans"
   - "nepean"
   - "barrhaven"
+  - "rockland"
+  - "embrun"
 relatedBlogSlugs:
   - "best-website-builders-small-business"
   - "local-seo-guide-ottawa"
@@ -87,3 +89,5 @@ relatedIndustrySlugs:
   - "ecommerce"
   - "dental"
   - "lawyers"
+  - "medical-clinics"
+  - "accountants"

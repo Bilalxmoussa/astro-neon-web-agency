@@ -55,10 +55,10 @@ export const siteConfig = {
   intro: {
     heading: "Ottawa Small Business Website Design That Drives Results",
     paragraphs: [
-      "Your website is your most powerful sales tool. In today's digital-first world, Ottawa businesses need more than just an online presence — they need a website that works as hard as they do. At Neon Web Agency, we specialize in web design in Ottawa for small businesses, creating custom websites that look exceptional, load fast, and convert visitors into paying customers.",
-      "Whether you're a local restaurant on Elgin Street, a professional service firm in the ByWard Market, a contractor in Kanata, or a retail shop in Westboro, our Ottawa web design team understands the local market inside and out.",
-      "Every website we build is mobile-responsive, optimized for search engines, and designed with your specific business goals in mind. No templates. No cookie-cutter solutions. Just custom web design Ottawa businesses trust to grow their revenue.",
-      "With over 150 websites launched for businesses across the National Capital Region, we've helped companies in every industry achieve measurable growth through professional web design.",
+      'Your website is your most powerful sales tool. In today\'s digital-first world, Ottawa businesses need more than just an online presence — they need a website that works as hard as they do. At Neon Web Agency, we specialize in <a href="/services/web-design/">web design in Ottawa</a> for <a href="/industries/">small businesses</a>, creating custom websites that look exceptional, load fast, and convert visitors into paying customers.',
+      'Whether you\'re a local <a href="/industries/restaurants/">restaurant on Elgin Street</a>, a professional service firm in the ByWard Market, a contractor in <a href="/areas/kanata/">Kanata</a>, or a retail shop in <a href="/areas/westboro/">Westboro</a>, our Ottawa web design team understands the local market inside and out.',
+      'Every website we build is <a href="/services/responsive-development/">mobile-responsive</a>, optimized for <a href="/services/seo/">search engines</a>, and designed with your specific business goals in mind. No templates. No cookie-cutter solutions. Just <a href="/services/web-design/">custom web design</a> Ottawa businesses trust to grow their revenue.',
+      'With over 150 websites launched for businesses across the <a href="/areas/">National Capital Region</a> — from <a href="/areas/barrhaven/">Barrhaven</a> and <a href="/areas/orleans/">Orleans</a> to <a href="/areas/stittsville/">Stittsville</a> and <a href="/areas/gatineau/">Gatineau</a> — we\'ve helped companies in every industry achieve measurable growth through professional web design.',
     ],
   },
   services: [
