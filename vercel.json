@@ -1,0 +1,41 @@
+{
+  "redirects": [
+    { "source": "/web-design-ottawa", "destination": "/services/web-design/", "statusCode": 301 },
+    { "source": "/web-design-ottawa/restaurants", "destination": "/industries/restaurants/", "statusCode": 301 },
+    { "source": "/web-design-ottawa/dental", "destination": "/industries/dental/", "statusCode": 301 },
+    { "source": "/web-design-ottawa/lawyers", "destination": "/industries/lawyers/", "statusCode": 301 },
+    { "source": "/web-design-ottawa/ecommerce", "destination": "/industries/ecommerce/", "statusCode": 301 },
+    { "source": "/web-design-ottawa/contractors", "destination": "/industries/contractors/", "statusCode": 301 },
+    { "source": "/web-design-ottawa/real-estate", "destination": "/industries/real-estate/", "statusCode": 301 },
+    { "source": "/seo-ottawa", "destination": "/services/seo/", "statusCode": 301 },
+    { "source": "/website-development-ottawa", "destination": "/services/responsive-development/", "statusCode": 301 },
+    { "source": "/web-design-kanata", "destination": "/areas/kanata/", "statusCode": 301 },
+    { "source": "/web-design-barrhaven", "destination": "/areas/barrhaven/", "statusCode": 301 },
+    { "source": "/web-design-orleans", "destination": "/areas/orleans/", "statusCode": 301 },
+    { "source": "/web-design-nepean", "destination": "/areas/nepean/", "statusCode": 301 },
+    { "source": "/web-design-gloucester", "destination": "/areas/gloucester/", "statusCode": 301 },
+    { "source": "/web-design-gatineau", "destination": "/areas/gatineau/", "statusCode": 301 }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+      ]
+    },
+    {
+      "source": "/_astro/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/images/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=2592000" }
+      ]
+    }
+  ]
+}

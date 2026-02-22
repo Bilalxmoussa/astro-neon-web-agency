@@ -1,0 +1,33 @@
+---
+interface LinkItem {
+  label: string;
+  href: string;
+  description?: string;
+}
+
+interface Props {
+  heading: string;
+  links: LinkItem[];
+}
+
+const { heading, links } = Astro.props;
+---
+
+<section class="py-12 bg-light">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-2xl font-bold text-dark mb-6">{heading}</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {links.map((link) => (
+        <a href={link.href} class="group flex items-center gap-3 p-4 bg-white rounded-lg border border-gray-lighter hover:border-primary/30 transition-colors">
+          <svg class="w-5 h-5 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+          <div>
+            <span class="text-sm font-medium text-dark group-hover:text-primary transition-colors">{link.label}</span>
+            {link.description && <p class="text-xs text-gray mt-0.5">{link.description}</p>}
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

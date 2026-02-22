@@ -1,0 +1,165 @@
+{
+  "$ref": "#/definitions/areas",
+  "definitions": {
+    "areas": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "metaTitle": {
+          "type": "string"
+        },
+        "metaDescription": {
+          "type": "string"
+        },
+        "keyword": {
+          "type": "string"
+        },
+        "h1": {
+          "type": "string"
+        },
+        "heroDescription": {
+          "type": "string"
+        },
+        "mapEmbedUrl": {
+          "type": "string"
+        },
+        "demographics": {
+          "type": "string"
+        },
+        "landmarks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "neighborhoods": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sections": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "heading": {
+                "type": "string"
+              },
+              "content": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "heading",
+              "content"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "features": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "title",
+              "description"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "stats": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "value",
+              "label"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "faqs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "question": {
+                "type": "string"
+              },
+              "answer": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "question",
+              "answer"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "relatedLocations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "relatedBlogSlugs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "relatedIndustrySlugs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "title",
+        "metaTitle",
+        "metaDescription",
+        "keyword",
+        "h1",
+        "heroDescription",
+        "sections",
+        "features",
+        "stats",
+        "faqs",
+        "relatedLocations"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

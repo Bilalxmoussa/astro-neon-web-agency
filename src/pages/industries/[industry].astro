@@ -1,0 +1,101 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '../../layouts/PageLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FeatureGrid from '../../components/FeatureGrid.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTA from '../../components/CTA.astro';
+import InternalLinks from '../../components/InternalLinks.astro';
+import ServiceSchema from '../../components/schema/ServiceSchema.astro';
+import FAQSchema from '../../components/schema/FAQSchema.astro';
+import BreadcrumbSchema from '../../components/schema/BreadcrumbSchema.astro';
+import WebPageSchema from '../../components/schema/WebPageSchema.astro';
+import { siteConfig } from '../../config/site';
+
+export async function getStaticPaths() {
+  const industries = await getCollection('industries');
+  return industries.map((entry) => ({
+    params: { industry: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const data = entry.data;
+
+const relatedIndustryLinks = data.relatedIndustries.map((slug: string) => ({
+  label: slug.replace(/-/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase()) + ' Web Design',
+  href: `/industries/${slug}/`,
+}));
+
+const serviceLinks = siteConfig.services.slice(0, 4).map((s) => ({
+  label: s.title,
+  href: `/services/${s.slug}/`,
+}));
+
+const areaLinks = siteConfig.areas.map((a) => ({
+  label: `Web Design ${a.name}`,
+  href: `/areas/${a.slug}/`,
+}));
+
+const blogLinks = (data.relatedBlogSlugs || []).map((slug: string) => ({
+  label: slug.replace(/-/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase()),
+  href: `/blog/${slug}/`,
+}));
+---
+
+<PageLayout title={data.metaTitle} description={data.metaDescription}>
+  <Fragment slot="head">
+    <ServiceSchema name={data.title} description={data.heroDescription} url={`/industries/${entry.id}/`} />
+    <FAQSchema items={data.faqs} />
+    <WebPageSchema title={data.title} description={data.metaDescription} url={`/industries/${entry.id}/`} />
+    <BreadcrumbSchema items={[
+      { label: 'Home', href: '/' },
+      { label: 'Industries', href: '/industries/' },
+      { label: data.title },
+    ]} />
+  </Fragment>
+
+  <Hero
+    headline={data.h1}
+    subheadline={data.heroDescription}
+    ctaText="Get a Free Quote"
+    ctaLink={siteConfig.cta.buttonLink}
+    stats={data.stats}
+  />
+
+  <section class="py-8 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Breadcrumbs items={[
+        { label: 'Home', href: '/' },
+        { label: 'Industries', href: '/industries/' },
+        { label: data.title },
+      ]} />
+    </div>
+  </section>
+
+  {data.sections.map((section) => (
+    <section class="py-16 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-dark mb-6">{section.heading}</h2>
+        {section.content.map((p) => (
+          <p class="text-gray leading-relaxed mb-4" set:html={p} />
+        ))}
+      </div>
+    </section>
+  ))}
+
+  <FeatureGrid heading="Features We Deliver" features={data.features} />
+  <FAQ heading={`${data.title} — FAQ`} items={data.faqs} />
+
+  <InternalLinks heading="Related Industries" links={relatedIndustryLinks} />
+  <InternalLinks heading="Our Services" links={serviceLinks} />
+  <InternalLinks heading="Areas We Serve" links={areaLinks} />
+
+  {blogLinks.length > 0 && (
+    <InternalLinks heading="Related Articles" links={blogLinks} />
+  )}
+
+  <CTA />
+</PageLayout>

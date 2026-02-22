@@ -1,0 +1,51 @@
+---
+import { siteConfig } from '../config/site';
+
+const { heading, subheading, plans } = siteConfig.pricing;
+---
+
+<section id="pricing" class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="text-3xl sm:text-4xl font-bold text-dark">{heading}</h2>
+      <p class="mt-4 text-lg text-gray">{subheading}</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+      {plans.map((plan) => (
+        <div class={`relative p-8 rounded-xl border-2 ${plan.popular ? 'border-primary bg-primary/5 shadow-lg' : 'border-gray-lighter bg-white'}`}>
+          {plan.popular && (
+            <div class="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-primary text-white text-xs font-semibold rounded-full">
+              Most Popular
+            </div>
+          )}
+          <h3 class="text-xl font-bold text-dark">{plan.name}</h3>
+          <div class="mt-4">
+            <span class="text-4xl font-extrabold text-dark">{plan.price}</span>
+          </div>
+          <p class="mt-3 text-sm text-gray">{plan.description}</p>
+          <ul class="mt-6 space-y-3">
+            {plan.features.map((feature) => (
+              <li class="flex items-start gap-3 text-sm text-dark">
+                <svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                {feature}
+              </li>
+            ))}
+          </ul>
+          <a
+            href={siteConfig.cta.buttonLink}
+            class={`mt-8 block text-center px-6 py-3 rounded-lg font-semibold transition-colors ${
+              plan.popular
+                ? 'bg-primary text-white hover:bg-primary-dark'
+                : 'bg-light text-dark border border-gray-lighter hover:bg-gray-lighter'
+            }`}
+          >
+            Get Started
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

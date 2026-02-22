@@ -1,0 +1,44 @@
+---
+import { siteConfig } from '../../config/site';
+
+interface Props {
+  title: string;
+  description: string;
+  datePublished: string;
+  dateModified: string;
+  url: string;
+}
+
+const { title, description, datePublished, dateModified, url } = Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: title,
+  description,
+  datePublished,
+  dateModified,
+  url: new URL(url, siteConfig.website).toString(),
+  author: {
+    "@type": "Person",
+    name: siteConfig.author.name,
+    jobTitle: siteConfig.author.title,
+    description: siteConfig.author.bio,
+  },
+  publisher: {
+    "@type": "Organization",
+    name: siteConfig.businessName,
+    url: siteConfig.website,
+    logo: {
+      "@type": "ImageObject",
+      url: siteConfig.logoUrl,
+    },
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": new URL(url, siteConfig.website).toString(),
+  },
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

@@ -1,0 +1,66 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CTA from '../../components/CTA.astro';
+import BreadcrumbSchema from '../../components/schema/BreadcrumbSchema.astro';
+import WebPageSchema from '../../components/schema/WebPageSchema.astro';
+import { getCollection } from 'astro:content';
+import { siteConfig } from '../../config/site';
+
+const areas = await getCollection('areas');
+---
+
+<PageLayout title="Areas We Serve - Web Design Across Ottawa - Neon Web Agency" description="Web design services across the Ottawa region. Serving Ottawa, Kanata, Barrhaven, Orleans, Nepean, Gloucester, and Gatineau.">
+  <Fragment slot="head">
+    <WebPageSchema title="Areas We Serve" description="Web design services across Ottawa and the National Capital Region" url="/areas/" />
+    <BreadcrumbSchema items={[{ label: 'Home', href: '/' }, { label: 'Areas We Serve' }]} />
+  </Fragment>
+
+  <Hero
+    headline="Areas We Serve"
+    suffix="Across the Ottawa Region"
+    subheadline="Professional web design services for businesses across Ottawa, Kanata, Barrhaven, Orleans, Nepean, Gloucester, and Gatineau."
+    ctaText="Get a Free Quote"
+    ctaLink={siteConfig.cta.buttonLink}
+  />
+
+  <section class="py-8 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Areas We Serve' }]} />
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {areas.map((area) => (
+          <a href={`/areas/${area.id}/`} class="group p-8 bg-light rounded-xl border border-gray-lighter card-hover block">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+              <h2 class="text-xl font-bold text-dark group-hover:text-primary transition-colors">Web Design {area.data.name}</h2>
+            </div>
+            <p class="text-gray text-sm leading-relaxed">{area.data.heroDescription.slice(0, 150)}...</p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              {area.data.stats.slice(0, 2).map((stat) => (
+                <span class="text-xs font-medium px-2 py-1 bg-primary/10 text-primary rounded-full">
+                  {stat.value} {stat.label}
+                </span>
+              ))}
+            </div>
+            <div class="mt-4">
+              <span class="text-sm font-medium text-primary">View all services in {area.data.name} &rarr;</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+</PageLayout>

@@ -1,0 +1,158 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '../../../layouts/PageLayout.astro';
+import Hero from '../../../components/Hero.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import FeatureGrid from '../../../components/FeatureGrid.astro';
+import StatsBar from '../../../components/StatsBar.astro';
+import FAQ from '../../../components/FAQ.astro';
+import GoogleMap from '../../../components/GoogleMap.astro';
+import CTA from '../../../components/CTA.astro';
+import InternalLinks from '../../../components/InternalLinks.astro';
+import LocalBusinessSchema from '../../../components/schema/LocalBusinessSchema.astro';
+import ServiceSchema from '../../../components/schema/ServiceSchema.astro';
+import FAQSchema from '../../../components/schema/FAQSchema.astro';
+import BreadcrumbSchema from '../../../components/schema/BreadcrumbSchema.astro';
+import { siteConfig } from '../../../config/site';
+
+export async function getStaticPaths() {
+  const areas = await getCollection('areas');
+  const services = await getCollection('services');
+
+  const paths = [];
+  for (const area of areas) {
+    for (const service of services) {
+      paths.push({
+        params: { area: area.id, service: service.id },
+        props: { area, service },
+      });
+    }
+  }
+  return paths;
+}
+
+const { area, service } = Astro.props;
+const areaData = area.data;
+const serviceData = service.data;
+
+// Build unique content for this area-service combination
+const pageTitle = `${serviceData.title.replace('Ottawa', '').trim()} in ${areaData.name}`;
+const metaTitle = `${pageTitle} | ${siteConfig.businessName}`;
+const metaDescription = `Professional ${serviceData.keyword.replace('Ottawa', '').trim().toLowerCase()} services in ${areaData.name}, Ottawa. ${serviceData.heroDescription.split('.')[0]}.`;
+const h1 = pageTitle;
+const heroDescription = `We provide expert ${serviceData.title.toLowerCase().replace('ottawa', '').trim()} services for businesses in ${areaData.name}. ${areaData.demographics || ''} — our team understands the local market and builds websites that deliver results for ${areaData.name} businesses.`;
+
+// Combine FAQs — take 2 from service, 2 from area, and create 1 unique
+const combinedFaqs = [
+  {
+    question: `How much does ${serviceData.keyword.replace('Ottawa', '').trim().toLowerCase()} cost in ${areaData.name}?`,
+    answer: `Pricing for ${serviceData.keyword.replace('Ottawa', '').trim().toLowerCase()} in ${areaData.name} depends on your specific needs. ${serviceData.faqs[0]?.answer || 'Contact us for a custom quote.'}`,
+  },
+  ...serviceData.faqs.slice(1, 3),
+  ...areaData.faqs.slice(0, 2),
+];
+
+// Internal links
+const otherServicesInArea = siteConfig.services
+  .filter((s) => s.slug !== service.id)
+  .map((s) => ({
+    label: `${s.title} in ${areaData.name}`,
+    href: `/areas/${area.id}/${s.slug}/`,
+  }));
+
+const sameServiceOtherAreas = siteConfig.areas
+  .filter((a) => a.slug !== area.id)
+  .map((a) => ({
+    label: `${serviceData.title.replace('Ottawa', '').trim()} in ${a.name}`,
+    href: `/areas/${a.slug}/${service.id}/`,
+  }));
+
+const parentLinks = [
+  { label: `All Services in ${areaData.name}`, href: `/areas/${area.id}/` },
+  { label: serviceData.title, href: `/services/${service.id}/` },
+];
+---
+
+<PageLayout title={metaTitle} description={metaDescription}>
+  <Fragment slot="head">
+    <LocalBusinessSchema areaName={areaData.name} />
+    <ServiceSchema
+      name={pageTitle}
+      description={heroDescription}
+      url={`/areas/${area.id}/${service.id}/`}
+      areaServed={areaData.name}
+    />
+    <FAQSchema items={combinedFaqs} />
+    <BreadcrumbSchema items={[
+      { label: 'Home', href: '/' },
+      { label: 'Areas', href: '/areas/' },
+      { label: areaData.name, href: `/areas/${area.id}/` },
+      { label: pageTitle },
+    ]} />
+  </Fragment>
+
+  <Hero
+    headline={h1}
+    subheadline={heroDescription}
+    ctaText="Get a Free Quote"
+    ctaLink={siteConfig.cta.buttonLink}
+  />
+
+  <section class="py-8 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Breadcrumbs items={[
+        { label: 'Home', href: '/' },
+        { label: 'Areas', href: '/areas/' },
+        { label: areaData.name, href: `/areas/${area.id}/` },
+        { label: pageTitle },
+      ]} />
+    </div>
+  </section>
+
+  <!-- Merged content from service + area -->
+  <section class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-dark mb-6">
+        Why {areaData.name} Businesses Choose Our {serviceData.title.replace('Ottawa', '').trim()} Services
+      </h2>
+      <p class="text-gray leading-relaxed mb-4">
+        {areaData.name} is a thriving part of the Ottawa region{areaData.demographics ? ` — ${areaData.demographics.toLowerCase()}` : ''}. Businesses here need professional {serviceData.keyword.replace('Ottawa', '').trim().toLowerCase()} that understands the local market dynamics and customer expectations.
+      </p>
+      <p class="text-gray leading-relaxed mb-4">
+        At {siteConfig.businessName}, we bring deep expertise in both {serviceData.title.toLowerCase().replace('ottawa', '').trim()} and the {areaData.name} business landscape. We know the neighborhoods — {(areaData.neighborhoods || []).slice(0, 4).join(', ')} — and we understand what local customers expect when they search for businesses online.
+      </p>
+      <p class="text-gray leading-relaxed mb-4">
+        Every website we build for {areaData.name} businesses is mobile-responsive, SEO-optimized for local searches like "{serviceData.keyword.replace('Ottawa', areaData.name).trim()}," and designed to convert visitors into paying customers. Combined with our proven track record across the Ottawa region, we're the trusted choice for {areaData.name} businesses that want to grow online.
+      </p>
+
+      {serviceData.sections[0] && (
+        <>
+          <h2 class="text-3xl font-bold text-dark mb-6 mt-12">{serviceData.sections[0].heading.replace('Ottawa', areaData.name)}</h2>
+          {serviceData.sections[0].content.map((p) => (
+            <p class="text-gray leading-relaxed mb-4" set:html={p.replace(/Ottawa/g, areaData.name)} />
+          ))}
+        </>
+      )}
+    </div>
+  </section>
+
+  <StatsBar stats={[...serviceData.stats.slice(0, 2), ...areaData.stats.slice(0, 2)]} />
+  <FeatureGrid heading={`What We Deliver in ${areaData.name}`} features={serviceData.features} />
+
+  {areaData.mapEmbedUrl && (
+    <section class="py-16 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl font-bold text-dark mb-6">Serving {areaData.name} Businesses</h2>
+        <GoogleMap embedUrl={areaData.mapEmbedUrl} title={`${pageTitle} - Service Area`} />
+      </div>
+    </section>
+  )}
+
+  <FAQ heading={`${pageTitle} — FAQ`} items={combinedFaqs} />
+
+  <InternalLinks heading="Parent Pages" links={parentLinks} />
+  <InternalLinks heading={`Other Services in ${areaData.name}`} links={otherServicesInArea.slice(0, 6)} />
+  <InternalLinks heading={`${serviceData.title.replace('Ottawa', '').trim()} in Other Areas`} links={sameServiceOtherAreas} />
+
+  <CTA heading={`Ready for ${pageTitle}?`} />
+</PageLayout>

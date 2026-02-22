@@ -1,0 +1,32 @@
+---
+import { siteConfig } from '../config/site';
+
+const portfolio = siteConfig.portfolio;
+---
+
+<section id="portfolio" class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="text-3xl sm:text-4xl font-bold text-dark">Web Design Ottawa Portfolio</h2>
+      <p class="mt-4 text-lg text-gray">See how our web design has helped Ottawa businesses transform their online presence.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {portfolio.map((item) => (
+        <div class="bg-light rounded-xl border border-gray-lighter overflow-hidden card-hover">
+          <div class="h-48 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+            <span class="text-4xl font-bold text-primary/30">{item.title.charAt(0)}</span>
+          </div>
+          <div class="p-6">
+            <span class="text-xs font-medium text-primary uppercase tracking-wider">{item.category}</span>
+            <h3 class="mt-2 text-lg font-semibold text-dark">{item.title}</h3>
+            <p class="mt-2 text-sm text-gray leading-relaxed">{item.description}</p>
+            <div class="mt-4 inline-flex items-center px-3 py-1 bg-primary/10 text-primary text-sm font-medium rounded-full">
+              {item.results}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

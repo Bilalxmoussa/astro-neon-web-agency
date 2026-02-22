@@ -1,0 +1,30 @@
+---
+import { siteConfig } from '../../config/site';
+
+interface Props {
+  name: string;
+  description: string;
+  url: string;
+  areaServed?: string;
+}
+
+const { name, description, url, areaServed } = Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name,
+  description,
+  url: new URL(url, siteConfig.website).toString(),
+  provider: {
+    "@type": "LocalBusiness",
+    name: siteConfig.businessName,
+    url: siteConfig.website,
+  },
+  areaServed: areaServed
+    ? { "@type": "City", name: areaServed }
+    : siteConfig.schema.areaServed.map((a) => ({ "@type": "City", name: a })),
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

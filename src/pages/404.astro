@@ -1,0 +1,21 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+---
+
+<PageLayout title="Page Not Found - Neon Web Agency" description="The page you're looking for doesn't exist." noindex={true}>
+  <section class="py-32 text-center">
+    <div class="max-w-2xl mx-auto px-4">
+      <h1 class="text-6xl font-extrabold gradient-text">404</h1>
+      <p class="mt-4 text-xl text-dark font-semibold">Page Not Found</p>
+      <p class="mt-2 text-gray">The page you're looking for doesn't exist or has been moved.</p>
+      <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+        <a href="/" class="px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-colors">
+          Back to Home
+        </a>
+        <a href="/contact/" class="px-6 py-3 border-2 border-gray-lighter text-dark font-semibold rounded-lg hover:bg-light transition-colors">
+          Contact Us
+        </a>
+      </div>
+    </div>
+  </section>
+</PageLayout>

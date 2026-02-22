@@ -1,0 +1,102 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '../../layouts/PageLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FeatureGrid from '../../components/FeatureGrid.astro';
+import StatsBar from '../../components/StatsBar.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTA from '../../components/CTA.astro';
+import InternalLinks from '../../components/InternalLinks.astro';
+import ServiceSchema from '../../components/schema/ServiceSchema.astro';
+import FAQSchema from '../../components/schema/FAQSchema.astro';
+import BreadcrumbSchema from '../../components/schema/BreadcrumbSchema.astro';
+import WebPageSchema from '../../components/schema/WebPageSchema.astro';
+import { siteConfig } from '../../config/site';
+
+export async function getStaticPaths() {
+  const services = await getCollection('services');
+  return services.map((entry) => ({
+    params: { service: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const data = entry.data;
+
+const areaLinks = siteConfig.areas.map((area) => ({
+  label: `${data.title.split(' ')[0]} in ${area.name}`,
+  href: `/areas/${area.slug}/${entry.id}/`,
+}));
+
+const relatedServiceLinks = (data.relatedServiceSlugs || []).map((slug: string) => {
+  const s = siteConfig.services.find((sv) => sv.slug === slug);
+  return s ? { label: s.title, href: `/services/${slug}/` } : null;
+}).filter((link): link is { label: string; href: string } => link !== null);
+
+const blogLinks = (data.relatedBlogSlugs || []).map((slug: string) => ({
+  label: slug.replace(/-/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase()),
+  href: `/blog/${slug}/`,
+}));
+---
+
+<PageLayout title={data.metaTitle} description={data.metaDescription}>
+  <Fragment slot="head">
+    <ServiceSchema name={data.title} description={data.heroDescription} url={`/services/${entry.id}/`} />
+    <FAQSchema items={data.faqs} />
+    <WebPageSchema title={data.title} description={data.metaDescription} url={`/services/${entry.id}/`} />
+    <BreadcrumbSchema items={[
+      { label: 'Home', href: '/' },
+      { label: 'Services', href: '/services/' },
+      { label: data.title },
+    ]} />
+  </Fragment>
+
+  <Hero
+    headline={data.h1}
+    subheadline={data.heroDescription}
+    ctaText="Get a Free Quote"
+    ctaLink={siteConfig.cta.buttonLink}
+  />
+
+  <section class="py-8 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Breadcrumbs items={[
+        { label: 'Home', href: '/' },
+        { label: 'Services', href: '/services/' },
+        { label: data.title },
+      ]} />
+    </div>
+  </section>
+
+  <!-- Content Sections -->
+  {data.sections.map((section) => (
+    <section class="py-16 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-dark mb-6">{section.heading}</h2>
+        {section.content.map((p) => (
+          <p class="text-gray leading-relaxed mb-4" set:html={p} />
+        ))}
+      </div>
+    </section>
+  ))}
+
+  <StatsBar stats={data.stats} />
+  <FeatureGrid heading="What We Deliver" features={data.features} />
+  <FAQ heading={`${data.title} — FAQ`} items={data.faqs} />
+
+  {areaLinks.length > 0 && (
+    <InternalLinks heading={`${data.title.split(' ')[0]} Services by Area`} links={areaLinks} />
+  )}
+
+  {relatedServiceLinks.length > 0 && (
+    <InternalLinks heading="Related Services" links={relatedServiceLinks} />
+  )}
+
+  {blogLinks.length > 0 && (
+    <InternalLinks heading="Related Articles" links={blogLinks} />
+  )}
+
+  <CTA />
+</PageLayout>

@@ -1,0 +1,29 @@
+---
+interface Props {
+  heading?: string;
+  features: { title: string; description: string }[];
+}
+
+const { heading = "What We Deliver", features } = Astro.props;
+---
+
+<section class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    {heading && (
+      <h2 class="text-3xl sm:text-4xl font-bold text-dark text-center mb-12">{heading}</h2>
+    )}
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {features.map((feature) => (
+        <div class="p-6 bg-light rounded-xl border border-gray-lighter">
+          <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-dark">{feature.title}</h3>
+          <p class="mt-2 text-sm text-gray leading-relaxed">{feature.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

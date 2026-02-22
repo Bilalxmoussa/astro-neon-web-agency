@@ -1,0 +1,123 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '../../../layouts/PageLayout.astro';
+import Hero from '../../../components/Hero.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import FeatureGrid from '../../../components/FeatureGrid.astro';
+import StatsBar from '../../../components/StatsBar.astro';
+import FAQ from '../../../components/FAQ.astro';
+import GoogleMap from '../../../components/GoogleMap.astro';
+import CTA from '../../../components/CTA.astro';
+import InternalLinks from '../../../components/InternalLinks.astro';
+import LocalBusinessSchema from '../../../components/schema/LocalBusinessSchema.astro';
+import FAQSchema from '../../../components/schema/FAQSchema.astro';
+import BreadcrumbSchema from '../../../components/schema/BreadcrumbSchema.astro';
+import WebPageSchema from '../../../components/schema/WebPageSchema.astro';
+import { siteConfig } from '../../../config/site';
+
+export async function getStaticPaths() {
+  const areas = await getCollection('areas');
+  return areas.map((entry) => ({
+    params: { area: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const data = entry.data;
+
+// Service links for this area
+const serviceLinks = siteConfig.services.map((s) => ({
+  label: `${s.title} in ${data.name}`,
+  href: `/areas/${entry.id}/${s.slug}/`,
+}));
+
+// Related area links
+const relatedAreaLinks = data.relatedLocations.map((slug: string) => {
+  const a = siteConfig.areas.find((ar) => ar.slug === slug);
+  return a ? { label: `Web Design ${a.name}`, href: `/areas/${slug}/` } : null;
+}).filter((link): link is { label: string; href: string } => link !== null);
+
+const blogLinks = (data.relatedBlogSlugs || []).map((slug: string) => ({
+  label: slug.replace(/-/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase()),
+  href: `/blog/${slug}/`,
+}));
+
+const industryLinks = (data.relatedIndustrySlugs || []).map((slug: string) => ({
+  label: slug.replace(/-/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase()) + ' Web Design',
+  href: `/industries/${slug}/`,
+}));
+---
+
+<PageLayout title={data.metaTitle} description={data.metaDescription}>
+  <Fragment slot="head">
+    <LocalBusinessSchema areaName={data.name} />
+    <FAQSchema items={data.faqs} />
+    <WebPageSchema title={data.title} description={data.metaDescription} url={`/areas/${entry.id}/`} />
+    <BreadcrumbSchema items={[
+      { label: 'Home', href: '/' },
+      { label: 'Areas', href: '/areas/' },
+      { label: `Web Design ${data.name}` },
+    ]} />
+  </Fragment>
+
+  <Hero
+    headline={data.h1}
+    subheadline={data.heroDescription}
+    ctaText="Get a Free Quote"
+    ctaLink={siteConfig.cta.buttonLink}
+    stats={data.stats}
+  />
+
+  <section class="py-8 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Breadcrumbs items={[
+        { label: 'Home', href: '/' },
+        { label: 'Areas', href: '/areas/' },
+        { label: `Web Design ${data.name}` },
+      ]} />
+    </div>
+  </section>
+
+  {data.sections.map((section) => (
+    <section class="py-16 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-dark mb-6">{section.heading}</h2>
+        {section.content.map((p) => (
+          <p class="text-gray leading-relaxed mb-4" set:html={p} />
+        ))}
+      </div>
+    </section>
+  ))}
+
+  <StatsBar stats={data.stats} />
+  <FeatureGrid heading={`What We Deliver for ${data.name} Businesses`} features={data.features} />
+
+  {data.mapEmbedUrl && (
+    <section class="py-16 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl font-bold text-dark mb-6">Serving {data.name} and Surrounding Areas</h2>
+        <GoogleMap embedUrl={data.mapEmbedUrl} title={`Web Design ${data.name} - Service Area`} />
+        {data.neighborhoods && data.neighborhoods.length > 0 && (
+          <div class="mt-6">
+            <h3 class="text-lg font-semibold text-dark mb-3">Neighbourhoods We Serve in {data.name}</h3>
+            <div class="flex flex-wrap gap-2">
+              {data.neighborhoods.map((n: string) => (
+                <span class="px-3 py-1 bg-light border border-gray-lighter rounded-full text-sm text-gray">{n}</span>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+  )}
+
+  <FAQ heading={`Web Design ${data.name} — FAQ`} items={data.faqs} />
+
+  <InternalLinks heading={`Our Services in ${data.name}`} links={serviceLinks} />
+  <InternalLinks heading="Nearby Areas" links={relatedAreaLinks} />
+  {industryLinks.length > 0 && <InternalLinks heading="Industries We Serve" links={industryLinks} />}
+  {blogLinks.length > 0 && <InternalLinks heading="Related Articles" links={blogLinks} />}
+
+  <CTA heading={`Ready for Professional Web Design in ${data.name}?`} />
+</PageLayout>

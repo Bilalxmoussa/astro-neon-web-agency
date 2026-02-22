@@ -1,0 +1,60 @@
+---
+import { siteConfig } from '../../config/site';
+
+interface Props {
+  areaName?: string;
+  areaGeo?: { latitude: number; longitude: number };
+}
+
+const { areaName, areaGeo } = Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": siteConfig.schema.type,
+  name: siteConfig.businessName,
+  description: siteConfig.seoDescription,
+  url: siteConfig.website,
+  logo: siteConfig.logoUrl,
+  image: siteConfig.logoUrl,
+  telephone: siteConfig.phone,
+  email: siteConfig.email,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: siteConfig.streetAddress,
+    addressLocality: siteConfig.city,
+    addressRegion: siteConfig.province,
+    postalCode: siteConfig.postalCode,
+    addressCountry: siteConfig.country,
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: areaGeo?.latitude || siteConfig.schema.geo.latitude,
+    longitude: areaGeo?.longitude || siteConfig.schema.geo.longitude,
+  },
+  areaServed: areaName
+    ? { "@type": "City", name: areaName }
+    : siteConfig.schema.areaServed.map((a) => ({ "@type": "City", name: a })),
+  priceRange: siteConfig.priceRange,
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    opens: "09:00",
+    closes: "17:00",
+  },
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: siteConfig.ratings.ratingValue,
+    reviewCount: siteConfig.ratings.reviewCount,
+    bestRating: siteConfig.ratings.bestRating,
+  },
+  founder: {
+    "@type": "Person",
+    name: siteConfig.author.name,
+    jobTitle: siteConfig.author.title,
+  },
+  foundingDate: String(siteConfig.foundingYear),
+  sameAs: siteConfig.schema.sameAs,
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

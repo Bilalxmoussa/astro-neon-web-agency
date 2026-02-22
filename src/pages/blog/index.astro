@@ -1,0 +1,61 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CTA from '../../components/CTA.astro';
+import BreadcrumbSchema from '../../components/schema/BreadcrumbSchema.astro';
+import WebPageSchema from '../../components/schema/WebPageSchema.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => new Date(b.data.datePublished).getTime() - new Date(a.data.datePublished).getTime()
+);
+---
+
+<PageLayout title="Web Design & SEO Blog - Neon Web Agency" description="Expert tips on web design, SEO, and digital marketing for Ottawa businesses. Guides, tutorials, and industry insights from Neon Web Agency.">
+  <Fragment slot="head">
+    <WebPageSchema title="Blog" description="Web design and SEO tips for Ottawa businesses" url="/blog/" />
+    <BreadcrumbSchema items={[{ label: 'Home', href: '/' }, { label: 'Blog' }]} />
+  </Fragment>
+
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Blog' }]} />
+
+      <h1 class="mt-8 text-4xl sm:text-5xl font-bold text-dark">Web Design & SEO Blog</h1>
+      <p class="mt-4 text-lg text-gray max-w-2xl">
+        Expert tips, guides, and insights on web design, SEO, and digital marketing for Ottawa businesses.
+      </p>
+
+      <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {posts.map((post) => (
+          <a href={`/blog/${post.id.replace(/\.md$/, '')}/`} class="group bg-light rounded-xl border border-gray-lighter overflow-hidden card-hover block">
+            <div class="h-48 bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center">
+              <span class="text-6xl font-bold text-primary/20">{post.data.title.charAt(0)}</span>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 text-xs text-gray mb-3">
+                <time datetime={post.data.datePublished}>
+                  {new Date(post.data.datePublished).toLocaleDateString('en-CA', { year: 'numeric', month: 'short', day: 'numeric' })}
+                </time>
+                <span>&middot;</span>
+                <span>{post.data.readTime}</span>
+              </div>
+              <h2 class="text-lg font-bold text-dark group-hover:text-primary transition-colors leading-snug">
+                {post.data.title}
+              </h2>
+              <p class="mt-2 text-sm text-gray leading-relaxed line-clamp-3">{post.data.excerpt}</p>
+              <span class="inline-flex items-center mt-4 text-sm font-medium text-primary">
+                Read more
+                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+</PageLayout>

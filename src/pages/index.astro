@@ -1,0 +1,69 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Hero from '../components/Hero.astro';
+import TrustBar from '../components/TrustBar.astro';
+import Services from '../components/Services.astro';
+import Process from '../components/Process.astro';
+import Portfolio from '../components/Portfolio.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Pricing from '../components/Pricing.astro';
+import FAQ from '../components/FAQ.astro';
+import AreasServed from '../components/AreasServed.astro';
+import CTA from '../components/CTA.astro';
+import LocalBusinessSchema from '../components/schema/LocalBusinessSchema.astro';
+import WebSiteSchema from '../components/schema/WebSiteSchema.astro';
+import FAQSchema from '../components/schema/FAQSchema.astro';
+import BreadcrumbSchema from '../components/schema/BreadcrumbSchema.astro';
+import { siteConfig } from '../config/site';
+---
+
+<PageLayout title={siteConfig.seoTitle} description={siteConfig.seoDescription}>
+  <Fragment slot="head">
+    <LocalBusinessSchema />
+    <WebSiteSchema />
+    <FAQSchema items={siteConfig.faq} />
+    <BreadcrumbSchema items={[{ label: 'Home', href: '/' }]} />
+    {siteConfig.services.map((s) => (
+      <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Service",
+        name: s.title,
+        description: s.description,
+        provider: { "@type": "LocalBusiness", name: siteConfig.businessName },
+        areaServed: siteConfig.schema.areaServed.map((a) => ({ "@type": "City", name: a })),
+      })} />
+    ))}
+  </Fragment>
+
+  <Hero
+    headline={siteConfig.hero.headline}
+    suffix={siteConfig.hero.heroSuffix}
+    subheadline={siteConfig.hero.subheadline}
+    ctaText={siteConfig.hero.ctaText}
+    ctaLink={siteConfig.hero.ctaLink}
+    secondaryCtaText={siteConfig.hero.secondaryCtaText}
+    secondaryCtaLink={siteConfig.hero.secondaryCtaLink}
+    stats={siteConfig.hero.stats}
+  />
+
+  <TrustBar />
+
+  <!-- Intro -->
+  <section class="py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl sm:text-4xl font-bold text-dark mb-8">{siteConfig.intro.heading}</h2>
+      {siteConfig.intro.paragraphs.map((p) => (
+        <p class="text-gray leading-relaxed mb-4">{p}</p>
+      ))}
+    </div>
+  </section>
+
+  <Services />
+  <Process />
+  <Portfolio />
+  <Testimonials />
+  <Pricing />
+  <AreasServed />
+  <FAQ heading="Web Design Ottawa — Frequently Asked Questions" items={siteConfig.faq} />
+  <CTA />
+</PageLayout>
