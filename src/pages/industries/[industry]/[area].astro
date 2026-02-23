@@ -1,0 +1,148 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '../../../layouts/PageLayout.astro';
+import Hero from '../../../components/Hero.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import FeatureGrid from '../../../components/FeatureGrid.astro';
+import FAQ from '../../../components/FAQ.astro';
+import CTA from '../../../components/CTA.astro';
+import InternalLinks from '../../../components/InternalLinks.astro';
+import ServiceSchema from '../../../components/schema/ServiceSchema.astro';
+import FAQSchema from '../../../components/schema/FAQSchema.astro';
+import BreadcrumbSchema from '../../../components/schema/BreadcrumbSchema.astro';
+import { siteConfig } from '../../../config/site';
+
+export async function getStaticPaths() {
+  const industries = await getCollection('industries');
+  const areas = await getCollection('areas');
+
+  const paths = [];
+  for (const industry of industries) {
+    for (const area of areas) {
+      paths.push({
+        params: { industry: industry.id, area: area.id },
+        props: { industry, area, allIndustries: industries, allAreas: areas },
+      });
+    }
+  }
+  return paths;
+}
+
+const { industry, area, allIndustries, allAreas } = Astro.props;
+const industryData = industry.data;
+const areaData = area.data;
+
+// Build unique title and meta for this industry x area combination
+const industryBase = industryData.title.replace(/\s*Ottawa\s*/i, ' ').trim();
+const pageTitle = `${industryBase} in ${areaData.name}`;
+const metaTitle = `${pageTitle} | ${siteConfig.businessName}`;
+const metaDescription = `Professional ${industryData.keyword.replace(/\s*Ottawa\s*/i, ' ').trim().toLowerCase()} services in ${areaData.name}, Ottawa. ${industryData.heroDescription.split('.')[0]}.`;
+const h1 = pageTitle;
+const heroDescription = `We provide expert ${industryBase.toLowerCase()} services for businesses in ${areaData.name}. ${areaData.demographics ? areaData.demographics + ' — ' : ''}Our team understands the ${areaData.name} market and builds websites that deliver results for local ${industryBase.toLowerCase().replace('website design', '').replace('web design', '').trim()} businesses.`;
+
+// Combine FAQs — 2 from industry, 2 from area
+const combinedFaqs = [
+  {
+    question: `How much does ${industryData.keyword.replace(/\s*Ottawa\s*/i, ' ').trim().toLowerCase()} cost in ${areaData.name}?`,
+    answer: `Pricing for ${industryData.keyword.replace(/\s*Ottawa\s*/i, ' ').trim().toLowerCase()} in ${areaData.name} depends on your specific needs. ${industryData.faqs[0]?.answer || 'Contact us for a custom quote.'}`,
+  },
+  ...(industryData.faqs.length > 1 ? [industryData.faqs[1]] : []),
+  ...areaData.faqs.slice(0, 2),
+];
+
+// Internal links: same industry in other areas
+const sameIndustryOtherAreas = allAreas
+  .filter((a) => a.id !== area.id)
+  .map((a) => ({
+    label: `${industryBase} in ${a.data.name}`,
+    href: `/industries/${industry.id}/${a.id}/`,
+  }));
+
+// Internal links: other industries in same area
+const otherIndustriesInArea = allIndustries
+  .filter((i) => i.id !== industry.id)
+  .map((i) => ({
+    label: `${i.data.title.replace(/\s*Ottawa\s*/i, ' ').trim()} in ${areaData.name}`,
+    href: `/industries/${i.id}/${area.id}/`,
+  }));
+
+// Parent page links
+const parentLinks = [
+  { label: industryData.title, href: `/industries/${industry.id}/` },
+  { label: `Web Design ${areaData.name}`, href: `/areas/${area.id}/` },
+];
+
+// Breadcrumb items
+const breadcrumbItems = [
+  { label: 'Home', href: '/' },
+  { label: 'Industries', href: '/industries/' },
+  { label: industryData.title, href: `/industries/${industry.id}/` },
+  { label: `${industryBase} in ${areaData.name}` },
+];
+
+// Industry keyword stripped of "Ottawa" for local replacement
+const localKeyword = industryData.keyword.replace(/Ottawa/g, areaData.name).trim();
+---
+
+<PageLayout title={metaTitle} description={metaDescription}>
+  <Fragment slot="head">
+    <ServiceSchema
+      name={pageTitle}
+      description={heroDescription}
+      url={`/industries/${industry.id}/${area.id}/`}
+      areaServed={areaData.name}
+    />
+    <FAQSchema items={combinedFaqs} />
+    <BreadcrumbSchema items={breadcrumbItems} />
+  </Fragment>
+
+  <Hero
+    headline={h1}
+    subheadline={heroDescription}
+    ctaText="Get a Free Quote"
+    ctaLink={siteConfig.cta.buttonLink}
+  />
+
+  <section class="py-8 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Breadcrumbs items={breadcrumbItems} />
+    </div>
+  </section>
+
+  <!-- Merged content: industry expertise + area knowledge -->
+  <section class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-dark mb-6">
+        Why {areaData.name} Businesses Choose Our {industryBase} Services
+      </h2>
+      <p class="text-gray leading-relaxed mb-4">
+        {areaData.name} is a thriving part of the Ottawa region{areaData.demographics ? ` — ${areaData.demographics.toLowerCase()}` : ''}. Local {industryBase.toLowerCase().replace('website design', '').replace('web design', '').trim()} businesses here need a website that understands the community, builds trust with local customers, and drives measurable growth.
+      </p>
+      <p class="text-gray leading-relaxed mb-4">
+        At {siteConfig.businessName}, we bring deep expertise in both {industryBase.toLowerCase()} and the {areaData.name} business landscape.{(areaData.neighborhoods || []).length > 0 ? ` We know the neighborhoods — ${(areaData.neighborhoods || []).slice(0, 4).join(', ')} — and we understand what local customers expect when searching for ${industryBase.toLowerCase().replace('website design', '').replace('web design', '').trim()} services online.` : ''} Every website we build is tailored to the specific needs of your industry and optimized for local searches like "{localKeyword}."
+      </p>
+      <p class="text-gray leading-relaxed mb-4">
+        From mobile-responsive design and <a href="/services/seo/">local SEO</a> to conversion-focused layouts and industry-specific features, we ensure your {areaData.name} business stands out from the competition. Combined with our proven track record across the <a href="/areas/">Ottawa region</a>, we're the trusted choice for {industryBase.toLowerCase()} in {areaData.name}.
+      </p>
+
+      {industryData.sections[0] && (
+        <>
+          <h2 class="text-3xl font-bold text-dark mb-6 mt-12">{industryData.sections[0].heading.replace(/Ottawa/g, areaData.name)}</h2>
+          {industryData.sections[0].content.map((p) => (
+            <p class="text-gray leading-relaxed mb-4" set:html={p.replace(/Ottawa/g, areaData.name)} />
+          ))}
+        </>
+      )}
+    </div>
+  </section>
+
+  <FeatureGrid heading={`${industryBase} Features for ${areaData.name} Businesses`} features={industryData.features} />
+
+  <FAQ heading={`${pageTitle} — FAQ`} items={combinedFaqs} />
+
+  <InternalLinks heading="Parent Pages" links={parentLinks} />
+  <InternalLinks heading={`${industryBase} in Other Areas`} links={sameIndustryOtherAreas.slice(0, 8)} />
+  <InternalLinks heading={`Other Industries in ${areaData.name}`} links={otherIndustriesInArea.slice(0, 8)} />
+
+  <CTA heading={`Ready for ${pageTitle}?`} />
+</PageLayout>
