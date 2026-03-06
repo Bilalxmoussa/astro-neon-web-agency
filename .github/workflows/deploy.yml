@@ -53,6 +53,6 @@ jobs:
           rsync -avz --delete \
             -e "ssh -i ~/.ssh/deploy_key -p $SSH_PORT -o StrictHostKeyChecking=no" \
             dist/ \
-            "$SSH_USER@$SSH_HOST:~/public_html/"
+            "$SSH_USER@$SSH_HOST:~/domains/neoncraft.me/public_html/"
 
           rm -f ~/.ssh/deploy_key
