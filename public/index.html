@@ -24,19 +24,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #09090B;
-      --surface: #111113;
-      --surface-2: #18181B;
-      --border: rgba(255,255,255,0.06);
+      --bg: #FFFFFF;
+      --surface: #F5F5F7;
+      --surface-2: #EDEDF0;
+      --border: rgba(0,0,0,0.08);
       --accent: #6D5CFF;
       --accent-light: #8B7EFF;
-      --accent-glow: rgba(109,92,255,0.08);
-      --accent-glow-md: rgba(109,92,255,0.15);
+      --accent-glow: rgba(109,92,255,0.06);
+      --accent-glow-md: rgba(109,92,255,0.10);
       --green: #34D399;
-      --white: #FAFAFA;
-      --text: #A1A1AA;
+      --white: #09090B;
+      --text: #52525B;
       --text-dim: #71717A;
-      --text-faint: #3F3F46;
+      --text-faint: #D4D4D8;
       --serif: 'Instrument Serif', serif;
       --sans: 'Outfit', sans-serif;
       --mono: 'Geist Mono', monospace;
@@ -57,7 +57,7 @@
 
     .grain {
       position: fixed; inset: 0; z-index: 9999;
-      pointer-events: none; opacity: 0.35;
+      pointer-events: none; opacity: 0.15;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
     }
 
@@ -88,13 +88,13 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       padding: 1rem 2.5rem;
       display: flex; justify-content: space-between; align-items: center;
-      background: rgba(9,9,11,0.6);
+      background: rgba(255,255,255,0.6);
       backdrop-filter: blur(24px);
       border-bottom: 1px solid transparent;
       transition: background 0.4s, border-color 0.4s, padding 0.4s;
     }
     nav.scrolled {
-      background: rgba(9,9,11,0.92);
+      background: rgba(255,255,255,0.92);
       border-bottom-color: var(--border);
       padding: 0.75rem 2.5rem;
     }
@@ -184,7 +184,7 @@
     .mobile-menu {
       display: none;
       position: fixed; inset: 0; z-index: 99;
-      background: rgba(9,9,11,0.97);
+      background: rgba(255,255,255,0.97);
       backdrop-filter: blur(32px);
       flex-direction: column;
       align-items: center; justify-content: center;
@@ -215,7 +215,7 @@
       display: none;
       position: fixed; bottom: 0; left: 0; right: 0;
       z-index: 100;
-      background: rgba(9,9,11,0.95);
+      background: rgba(255,255,255,0.95);
       backdrop-filter: blur(24px);
       border-top: 1px solid var(--border);
       padding: 0.75rem 1rem;
@@ -228,7 +228,7 @@
       text-decoration: none; font-family: var(--sans);
     }
     .mobile-cta-call {
-      background: var(--green); color: #09090B;
+      background: var(--green); color: #FFFFFF;
       transition: background 0.3s, transform 0.3s;
     }
     .mobile-cta-call:hover { background: #4ade80; transform: translateY(-1px); }
@@ -470,7 +470,7 @@
     .project:hover {
       border-color: rgba(109,92,255,0.15);
       transform: translateY(-4px);
-      box-shadow: 0 24px 60px rgba(0,0,0,0.3), 0 0 0 1px rgba(109,92,255,0.06);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.08), 0 0 0 1px rgba(109,92,255,0.06);
     }
     .project-preview {
       position: relative; min-height: 380px; overflow: hidden;
@@ -481,7 +481,7 @@
     .browser-frame {
       width: 88%; max-width: 420px;
       border-radius: 10px; overflow: hidden;
-      background: var(--bg);
+      background: #09090B;
       border: 1px solid rgba(255,255,255,0.08);
       box-shadow: 0 8px 32px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.03);
       transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s;
